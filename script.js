@@ -1,29 +1,13 @@
+// function doit(id){
+
+//     let target = document.getElementById(id);
+//     console.log(target.id);
+// }
+
+
+
 const choices =["paper" , "rock" , "scissor"];
-let humanscore = 0 , computerscore = 0;
-// let a = prompt("enter your first choice : rock paper scissor");
-// let b = prompt("enter your second choice : rock paper scissor");
-// while((a !== choices.choice1 && a !== choices.choice2 && a !== choices.choice2) ||  (b !== choices.choice1 && b !== choices.choice2 && b !== choices.choice2)){
-//     alert("wrong choice , please chose : rock , paper , scissor");
-//     a = prompt("enter your first choice : rock paper scissor");
-//     b = prompt("enter your second choice : rock paper scissor");
-// }
-
-
-// function getComputerChoice(a , b){
-
-// }
-
-
-function getComputerChoice(){
-        let x = Math.random();  
-        let computer = parseInt((x*3));
-        return choices[computer];
-}
-function getHumanChoice(){
-    let a = prompt("enter : rock , paper , scissor");
-    a = a.toLowerCase();
-    return a;
-}
+let humanscore = document.getElementById('humanresult') , computerscore =document.getElementById('computerresult');
 
 
 function playRound(a , b){
@@ -35,12 +19,12 @@ function playRound(a , b){
           return b;
         }
         else{
-            return a;
+            return "draw";
         }
     }
     else if(a === "rock"){
         if(b === "rock"){
-            return a;
+            return "draw";
         }
         else if(b === "scissor"){
            return a;
@@ -51,30 +35,65 @@ function playRound(a , b){
     }
     else {
         if(b === "rock"){
-            return b
+            return b;
         }
         else if(b === "scissor"){
-           return a;
+           return "draw";
         }
         else{
            return a;
         }
     }
 }
-
-
-function playGame(){
-    for(var i = 0 ; i < 5 ; i++){
-        let human = getHumanChoice();
-        let computer = getComputerChoice();
-        console.log("human choice : "+ human);
-        console.log("compter choice : "+computer);
-        if(human === computer){humanscore++;computerscore++;}
-        else if (playRound(human , computer) === human)humanscore++;
-        else computerscore++;
-        console.log(`round ${i+1}  human score : ${humanscore} and computer score is : ${computerscore} ` );
+function playerSelection(){
+    const plays = document.querySelectorAll('input[name="choice"]');
+    for(let p of plays){
+        if(p.checked)
+        console.log(p.id);
     }
 }
-playGame();
-console.log(`humanscore is : ${humanscore} and computerscore is : ${computerscore}`);
-// for(var i = 0 ; i < 15 ; i++)console.log(getComputerChoice());
+
+function getComputerChoice(){
+        let x = Math.random();  
+        let computer = parseInt((x*3));
+        console.log("computer choice is : " + choices[computer]);
+        return choices[computer];
+        
+}
+
+function playnow(){
+    let cc = getComputerChoice();
+    let hc = playerSelection();
+    //console.log(cc , hc);
+    let result  = playRound(hc , cc);
+    if(result === "draw"){
+        humanscore.value = parseInt(humanscore.value) +1;
+        computerscore.value = parseInt(computerscore.value) +1;
+    }
+    else if(result == hc)humanscore.value = parseInt(humanscore.value) +1;
+    else
+    computerscore.value = parseInt(computerscore.value) +1;
+    if(humanscore == computerscore == 5){
+        alert("draaaaaaaaaaaaaaaaaw");
+        computerscore.value  = "0";
+        humanscore.value = "0";
+    }
+    else if(humanscore.value == 5 ){
+        alert("HUMAN WIIIIIIINS !!!!!!!!!!");
+        computerscore.value  = "0";
+        humanscore.value = "0";
+    }
+    else if(computerscore.value == 5){
+        alert("COMPUTER TAKE OVER THE WORLD !!!!!! COMPUTER WINS");
+        computerscore.value  = "0";
+        humanscore.value = "0";
+    }
+}
+
+
+
+
+
+
+
+

@@ -6,6 +6,37 @@
     <title>ROCK PAPER SCISSORS</title>
 </head>
 <body>
+
+        <div class="wraper">
+        <label class="card">
+            <img src="/assets/rock.svg" alt="rock-image">
+          <input type="radio" name="choice" value="rock" id="rock" >
+          ROCK
+        </label >
+        <label class="card" >
+        <img src="/assets/paper.svg" alt="paper-image">
+          <input type="radio" name="choice" value="paper" id="paper">
+          PAPER
+        </label>
+        <label class="card">
+            <img src="/assets/scissors.svg" alt="scissor-image">
+          <input type="radio" name="choice" value="scissor" id="scissor">
+          SCISSOR
+        </label>
+    </div>
+    
+        <label align="center" class="launch">
+            <button type="button" id="play" onclick="playnow()">PLAY NOW</button>
+        </label>
+        <BR></BR>
+        <div class="wrapper2" align="center">
+        <label id="res">
+            <span name="first">HUMAN SCORE</span><input type="number" value="0" id="humanresult" disabled>
+            <BR></BR>
+            <span>COMPUTER SCORE</span><input type="number" value="0" id="computerresult" disabled>
+        </label>
+    </div>
+
     <script src="./script.js">
     </script>
 </body>
